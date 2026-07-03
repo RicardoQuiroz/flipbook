@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="744" height="1052" viewBox="0 0 744 1052">
+<rect width="744" height="1052" fill="#0F3460"/>
+<rect x="40" y="40" width="664" height="972" fill="none" stroke="#C9A84C" stroke-width="3"/>
+<text x="372" y="526" fill="#fff" font-family="Helvetica,Arial,sans-serif" font-size="42" font-weight="bold" text-anchor="middle">PORTADA</text>
+<text x="372" y="576" fill="#fff" font-family="Helvetica,Arial,sans-serif" font-size="20" text-anchor="middle">Flipbook de prueba — modo imágenes</text>
+<text x="372" y="982" fill="#fff" font-family="Helvetica,Arial,sans-serif" font-size="16" text-anchor="middle">1 / 6</text>
+<circle cx="372" cy="270" r="34" fill="#C9A84C">
+  <animate attributeName="r" values="26;44;26" dur="2.2s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="1;0.55;1" dur="2.2s" repeatCount="indefinite"/>
+</circle>
+<text x="372" y="360" fill="#C9A84C" font-family="Helvetica,Arial,sans-serif" font-size="18" text-anchor="middle">(SVG animado)</text>
+</svg>

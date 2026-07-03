@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flipbook</title>
+  <link rel="stylesheet" href="../visor/flipbook.css">
+</head>
+<body>
+  <div id="visor">
+    <div id="libro"></div>
+    <div id="capa-videos"></div>
+    <div id="zoom-capa"></div>
+    <div id="aviso-audio" title="Toca para activar el audio">🔊</div>
+    <div id="aviso-zoom">🔍 Doble clic para ampliar</div>
+    <div id="barra">
+      <button id="btn-mute" class="btn-barra" title="Silenciar">🔊</button>
+      <span class="sep-barra"></span>
+      <button id="btn-primera" class="btn-barra" title="Primera página">⏮</button>
+      <button id="btn-prev" class="btn-barra" title="Página anterior">◀</button>
+      <button id="btn-next" class="btn-barra" title="Página siguiente">▶</button>
+      <button id="btn-ultima" class="btn-barra" title="Última página">⏭</button>
+      <span class="sep-barra"></span>
+      <button id="btn-zoom-menos" class="btn-barra" title="Alejar">−</button>
+      <button id="btn-zoom-mas" class="btn-barra" title="Acercar">＋</button>
+    </div>
+    <button id="toggle-barra" title="Mostrar u ocultar la barra">▾</button>
+    <div id="popup">
+      <div id="popup-caja">
+        <button id="popup-cerrar" title="Cerrar">✕</button>
+        <div id="popup-contenido"></div>
+      </div>
+    </div>
+    <div id="cargando"><div class="spinner"></div></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+  <script src="config.js"></script>
+  <script src="../visor/flipbook.js"></script>
+</body>
+</html>

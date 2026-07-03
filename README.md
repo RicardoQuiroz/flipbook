@@ -1,5 +1,6 @@
 # Flipbook para GitHub Pages
 
+>La carpeta `ejemplo/` contiene un libro de prueba funcionando: ábrelo en https://ricardoquiroz.github.io/flipbook/ejemplo/
 >Para probarlo en tu PC, sirve la carpeta por HTTP en vez de abrir el archivo directamente. En una terminal:<br>&nbsp;<br>
 >cd D:\Git\flipbook<br>
 >python -m http.server 8000<br>&nbsp;<br>
@@ -139,7 +140,3 @@ Se pasa de página arrastrando las esquinas, haciendo clic en los bordes, desliz
 
 Los navegadores bloquean el audio hasta que el usuario interactúa con la página. Si el audio de la primera página queda bloqueado, aparece un icono 🔊 discreto; con un solo toque en cualquier parte, el audio se activa. A partir de ahí, todo se reproduce automáticamente al voltear.
 
-## Ejemplo
-
-La carpeta `ejemplo/` contiene un libro de prueba funcionando: ábrelo en
-`https://TU-USUARIO.github.io/TU-REPO/ejemplo](https://ricardoquiroz.github.io/flipbook/ejemplo/`.

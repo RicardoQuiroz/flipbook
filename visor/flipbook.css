@@ -33,6 +33,15 @@ html, body {
   filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.35));
 }
 
+/* Sin autoSize, el envoltorio de StPageFlip debe llenar #libro
+   (la hoja de estilos de la librería tiene la clase mal escrita
+   ".sft__wrapper", así que la definimos aquí correctamente). */
+#libro .stf__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 #libro canvas.pagina-canvas {
   width: 100%;
   height: 100%;

@@ -19,7 +19,8 @@ Visor con efecto de volteo de página (estilo Heyzine), hecho solo con HTML, CSS
 
 ## Árbol hierático
 
-```flipbook/
+```
+flipbook/
 ├── visor/            ← código ÚNICO (flipbook.js + flipbook.css)
 ├── plantilla/        ← para copiar por cada libro nuevo
 │   ├── index.html    (apunta a ../visor/)

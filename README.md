@@ -141,4 +141,4 @@ Los navegadores bloquean el audio hasta que el usuario interactúa con la págin
 ## Ejemplo
 
 La carpeta `ejemplo/` contiene un libro de prueba funcionando: ábrelo en
-`https://TU-USUARIO.github.io/TU-REPO/ejemplo/`.
+`https://TU-USUARIO.github.io/TU-REPO/ejemplo](https://ricardoquiroz.github.io/flipbook/ejemplo/`.

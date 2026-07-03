@@ -60,6 +60,7 @@ window.FLIPBOOK_CONFIG = {
   fondo: "#16213E",
   portada: true,          // primera página sola, como portada
   barra: true,            // false = sin barra de navegación
+  vista: "auto",          // "auto" | "doble" (pliego siempre) | "simple" (una hoja)
   sonidoVolteo: true,     // true | "archivo.mp3" | false
 
   // Cama musical para todo el libro (bucle: false = suena una vez)
@@ -126,7 +127,7 @@ Notas: los sonidos automáticos de un mismo pliego suenan en cola (izquierda →
 
 ## Barra de navegación y zoom
 
-La barra inferior incluye: 🔊 silenciar/activar todos los sonidos (volteo, audios de página y videos), ⏮ primera página, ◀ anterior, ▶ siguiente, ⏭ última, y − / ＋ de zoom. El botón ▾ de la esquina la oculta o muestra. Para publicar un libro sin barra, pon `barra: false` en `config.js` (los gestos siguen funcionando).
+La barra inferior incluye: 🔊 silenciar/activar todos los sonidos (volteo, audios de página y videos), ⏮ primera página, ◀ anterior, ▶ siguiente, ⏭ última, − / ＋ de zoom, y ◫ para alternar entre doble página y una sola hoja (conserva la página actual). El botón ▾ de la esquina la oculta o muestra. Para publicar un libro sin barra, pon `barra: false` en `config.js` (los gestos siguen funcionando). La vista inicial se fija con `vista: "auto" | "doble" | "simple"`.
 
 Zoom por gestos: doble clic o doble tap amplía hacia ese punto (y doble clic de nuevo sale); pellizco con dos dedos en táctil; Ctrl+rueda del ratón; estando ampliado se panea arrastrando (o con las flechas del teclado) y se sale con Esc. Las esquinas del libro quedan reservadas para voltear página.
 

@@ -1,8 +1,8 @@
 # Flipbook para GitHub Pages
 
->Para probarlo en tu PC, sirve la carpeta por HTTP en vez de abrir el archivo directamente. En una terminal:<br><br>
+>Para probarlo en tu PC, sirve la carpeta por HTTP en vez de abrir el archivo directamente. En una terminal:<br>&nbsp;<br>
 >cd D:\Git\flipbook<br>
->python -m http.server 8000<br><br>
+>python -m http.server 8000<br>&nbsp;<br>
 >y abre http://localhost:8000 (el ejemplo estará en http://localhost:8000/ejemplo/). Si usas VS Code, la extensión "Live Server" hace lo mismo con un clic.<br>
 >En GitHub Pages funcionará sin nada de esto, porque ya se sirve por HTTPS.
 

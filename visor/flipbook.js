@@ -747,9 +747,22 @@
 
   /* ==================== TAMAÑO Y ORIENTACIÓN ==================== */
 
+  // config.js → vista: "auto" (según el ancho de pantalla, por defecto),
+  //             "doble" (pliego siempre) o "simple" (una hoja siempre).
+  // El botón de la barra permite al lector alternarla al vuelo.
+  var vistaActual =
+    (CFG.vista === "simple" || CFG.vista === "doble") ? CFG.vista : "auto";
+
   function calcularModo() {
     var vw = visor.clientWidth, vh = visor.clientHeight;
     var margen = 0.96;
+
+    function modoSimple() {
+      var pw = Math.min(vw * margen, (vh * margen) / ratioPagina);
+      return { modo: "portrait", w: pw, h: pw * ratioPagina };
+    }
+
+    if (vistaActual === "simple") return modoSimple();
 
     // intentar doble página
     var bw = vw * margen;
@@ -760,11 +773,14 @@
     }
     var anchoPag = bw / 2;
 
-    // si la pantalla es angosta, una sola página
-    if (vw < 620 || anchoPag < 240) {
-      var pw = Math.min(vw * margen, (vh * margen) / ratioPagina);
-      return { modo: "portrait", w: pw, h: pw * ratioPagina };
+    if (vistaActual === "doble") {
+      // pliego forzado, salvo pantallas demasiado angostas para leerlo
+      if (vw < 480 || anchoPag < 160) return modoSimple();
+      return { modo: "landscape", w: bw, h: bh };
     }
+
+    // "auto": si la pantalla es angosta, una sola página
+    if (vw < 620 || anchoPag < 240) return modoSimple();
     return { modo: "landscape", w: bw, h: bh };
   }
 
@@ -780,7 +796,10 @@
       width: Math.round(anchoPag),
       height: Math.round(m.h),
       size: "stretch",
-      minWidth: 120,
+      // En modo stretch StPageFlip solo elige "portrait" (una hoja) cuando
+      // el ancho del bloque es menor que 2*minWidth; fijamos minWidth según
+      // la vista deseada para forzar la orientación correcta.
+      minWidth: m.modo === "portrait" ? Math.round(m.w) : 120,
       maxWidth: 4000,
       minHeight: 120,
       maxHeight: 4000,
@@ -791,10 +810,15 @@
       flippingTime: 850,
       mobileScrollSupport: false,
       showPageCorners: true,
-      autoSize: true
+      autoSize: false // el tamaño lo controla #libro (ver flipbook.css)
     });
 
     pageFlip.loadFromHTML(paginasHTML);
+
+    // StPageFlip deja min-width/min-height inline en #libro; los anulamos
+    // porque el tamaño lo gestionamos nosotros en cada redimensión.
+    libroEl.style.minWidth = "0";
+    libroEl.style.minHeight = "0";
 
     // StPageFlip fuerza densidad "hard" (rígida) en la portada y la última
     // página cuando showCover=true, y eso sustituye el doblez de esquina por
@@ -822,22 +846,33 @@
     });
 
     pageFlip.on("changeOrientation", function () {
-      requestAnimationFrame(refrescarCapas);
+      requestAnimationFrame(function () {
+        refrescarCapas();
+        actualizarBotonVista();
+      });
     });
 
     requestAnimationFrame(function () {
       refrescarCapas();
       actualizarAudios(paginasVisibles());
+      actualizarBotonVista();
     });
   }
 
   function reconstruirLibro() {
     var idx = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
     if (pageFlip) {
-      pageFlip.destroy();
+      try { pageFlip.destroy(); } catch (e) { /* ignorar */ }
       pageFlip = null;
     }
+    // OJO: destroy() de StPageFlip elimina #libro del DOM (block.remove()),
+    // así que hay que reinsertarlo antes de crear el libro nuevo.
+    if (!libroEl.parentNode) {
+      visor.insertBefore(libroEl, visor.firstChild);
+    }
     libroEl.innerHTML = "";
+    libroEl.className = "";
+    libroEl.removeAttribute("style");
     crearLibro();
     if (idx > 0) {
       try { pageFlip.turnToPage(idx); } catch (e) { /* ignorar */ }
@@ -876,8 +911,17 @@
   var barraEl = document.getElementById("barra");
   var toggleBarraEl = document.getElementById("toggle-barra");
   var btnMute = document.getElementById("btn-mute");
+  var btnVista = document.getElementById("btn-vista");
   var zoomCapa = document.getElementById("zoom-capa");
   var avisoZoomEl = document.getElementById("aviso-zoom");
+
+  // El icono del botón muestra la vista a la que se CAMBIARÍA
+  function actualizarBotonVista() {
+    if (!btnVista || !pageFlip) return;
+    var doble = pageFlip.getOrientation() === "landscape";
+    btnVista.textContent = doble ? "▯" : "◫";
+    btnVista.title = doble ? "Ver una página" : "Ver doble página";
+  }
 
   // Silencio global: volteo, música, objetos y videos.
   // La interfaz ARRANCA MUTEADA (empezarSilenciado: false para arrancar con sonido).
@@ -940,6 +984,14 @@
     });
     conBoton("btn-zoom-menos", function () {
       if (zoom.activo) setZoom(zoom.escala / 1.4);
+    });
+    conBoton("btn-vista", function () {
+      if (!pageFlip) return;
+      salirZoom();
+      ocultarVideos();
+      vistaActual = pageFlip.getOrientation() === "landscape" ? "simple" : "doble";
+      reconstruirLibro(); // conserva la página actual
+      requestAnimationFrame(actualizarBotonVista);
     });
     if (toggleBarraEl && barraEl) {
       toggleBarraEl.addEventListener("click", function () {

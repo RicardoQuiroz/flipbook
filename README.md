@@ -1,9 +1,9 @@
 # Flipbook para GitHub Pages
 
->Para probarlo en tu PC, sirve la carpeta por HTTP en vez de abrir el archivo directamente. En una terminal:
->cd D:\Git\flipbook
->python -m http.server 8000
->y abre http://localhost:8000 (el ejemplo estará en http://localhost:8000/ejemplo/). Si usas VS Code, la extensión "Live Server" hace lo mismo con un clic.
+>Para probarlo en tu PC, sirve la carpeta por HTTP en vez de abrir el archivo directamente. En una terminal:<br>
+>cd D:\Git\flipbook<br>
+>python -m http.server 8000<br>
+>y abre http://localhost:8000 (el ejemplo estará en http://localhost:8000/ejemplo/). Si usas VS Code, la extensión "Live Server" hace lo mismo con un clic.<br>
 >En GitHub Pages funcionará sin nada de esto, porque ya se sirve por HTTPS.
 
 Visor con efecto de volteo de página (estilo Heyzine), hecho solo con HTML, CSS y JS. El libro puede construirse desde una **lista de imágenes** (SVG, GIF, PNG, WebP — los formatos animados se animan) o desde un **PDF**. Soporta capas de imagen animadas dentro de las hojas, objetos de sonido posicionables (varios por página), cama musical, enlaces con ventana emergente HTML, videos de YouTube, zoom por gestos y barra de navegación opcional. Diseñado para incrustarse en un iframe.

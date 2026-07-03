@@ -30,6 +30,13 @@ window.FLIPBOOK_CONFIG = {
   // Mostrar la primera página sola, como portada
   portada: true,
 
+  // Vista del libro:
+  //   "auto"   → doble página en pantallas anchas, una en angostas (por defecto)
+  //   "doble"  → pliego de dos páginas siempre (cede en pantallas muy angostas)
+  //   "simple" → una sola hoja siempre
+  // El lector puede alternarla con el botón ◫ de la barra.
+  // vista: "auto",
+
   // Barra de navegación (silencio, páginas, zoom):
   //   true  → visible (con botón ▾ para ocultarla/mostrarla)
   //   false → sin barra (los gestos de zoom y volteo siguen funcionando)
